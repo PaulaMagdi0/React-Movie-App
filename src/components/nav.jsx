@@ -15,6 +15,12 @@ const Navbar = ({ onSearch }) => {
         onSearch(searchQuery);
     };
 
+    const handleKeyPress = (event) => {
+        if (event.key === "Enter") {
+            handleSearch();
+        }
+      };
+
     return (
         <header id="masthead" role="banner" className="site-header bg-black">
             <div className="container-fluid">
@@ -52,6 +58,7 @@ const Navbar = ({ onSearch }) => {
                             <button
                                 type="submit"
                                 className="btn btn-outline-light"
+                                onKeyDown={handleKeyPress}
                             >
                                 Search
                             </button>

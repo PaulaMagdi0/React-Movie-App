@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
-import { Spinner } from "react-bootstrap"; 
 
 const MovieDetails = () => {
   const [movie, setMovie] = useState(null);
@@ -12,7 +11,7 @@ const MovieDetails = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `https://api.themoviedb.org/3/movie/${id}?api_key={UR_API}`
+        `https://api.themoviedb.org/3/movie/${id}?api_key=a8076e672805353996a77d9c2e8db7ee`
       );
       setMovie(response.data);
       setLoading(false);
@@ -31,8 +30,8 @@ const MovieDetails = () => {
   if (loading) {
     return (
       <div className="d-flex flex-column justify-content-center align-items-center vh-100">
-        <Spinner animation="border" variant="primary" />
-        <p>Loading...</p>
+        <div className="custom-spinner"></div>
+        <p className="mt-3 fs-1 fw-bold">Loading movies...</p>
       </div>
     );
   }

@@ -15,7 +15,7 @@ const Movies = ({ searchQuery }) => {
   const fetchData = async (page = 1) => {
     try {
       const response = await axios.get(
-        `https://api.themoviedb.org/3/movie/popular?api_key=a8076e672805353996a77d9c2e8db7ee&page=${page}`
+        `https://api.themoviedb.org/3/movie/popular?api_key={UR_API}&page=${page}`
       );
       setMovies(response.data.results);
       setFilteredMovies(response.data.results);
@@ -106,7 +106,7 @@ const Movies = ({ searchQuery }) => {
     return (
       <div className="d-flex flex-column justify-content-center align-items-center vh-100">
         <div className="custom-spinner"></div>
-        <p className="mt-3">Loading movies...</p>
+        <p className="mt-3 fs-1 fw-bold">Loading movies...</p>
       </div>
     );
   }
