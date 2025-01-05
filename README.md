@@ -1,12 +1,12 @@
 # React Movie App
 
-A web application built with React that allows users to search for movies and view their details.
+A responsive web application built with React that allows users to search for movies and view their details.
 
 ## Features
 
-- Search for movies by title
-- View movie details, including release date, rating, and synopsis
-- Responsive design for optimal viewing on different devices
+- Search for movies by title.
+- View movie details, including release date, rating, and synopsis.
+- Responsive design for optimal viewing on different devices.
 
 ## Installation
 
@@ -45,4 +45,4 @@ A web application built with React that allows users to search for movies and vi
 
 ## Contributing
 
-Contributions are welcome! Please fork the repository and use a feature branch. Pull requests are warmly welcome.
+Contributions are welcome! Please fork the repository and create a pull request.
