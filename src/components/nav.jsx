@@ -29,16 +29,21 @@ const Navbar = ({ onSearch }) => {
                         <Link to="/" className="navbar-brand fs-1 fw-bold">
                             Movies
                         </Link>
-                        <button
-                            className="navbar-toggler"
-                            type="button"
-                            onClick={toggleMenu}
-                            aria-controls="navbarNav"
-                            aria-expanded={isMenuOpen}
-                            aria-label="Toggle search bar"
-                        >
-                            <i className="fas fa-search"></i> 
-                        </button>
+                        <div className="d-flex gap-3">
+                            <button
+                                className="navbar-toggler"
+                                type="button"
+                                onClick={toggleMenu}
+                                aria-controls="navbarNav"
+                                aria-expanded={isMenuOpen}
+                                aria-label="Toggle search bar"
+                            >
+                                <i className="fas fa-search"></i> 
+                            </button>
+                            <Link to="/wishlist" className="navbar-toggler">
+                                <i className="fas fa-heart"></i>
+                            </Link>
+                        </div>
                     </div>
                     <div
                         className={`flex-grow-1 search-container ${
