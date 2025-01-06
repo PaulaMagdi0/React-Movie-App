@@ -1,30 +1,47 @@
-import './App.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Navbar from './components/nav';
-import Movies from './pages/movies';
-import MovieDetails from './pages/MovieDetails';
-import NotFound from './pages/notFound';
-import Wishlist from './pages/wishlist';
-import { useState } from 'react';
-import RegisterForm from './pages/registration';
+import React, { Suspense, useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Navbar from "./components/nav";
+import Container from "react-bootstrap/Container";
+import "./App.css";
+import LanguageContext from "./context/LanguageContext";
+
+// Lazy-loaded components
+const Movies = React.lazy(() => import("./pages/movies"));
+const MovieDetails = React.lazy(() => import("./pages/MovieDetails"));
+const WatchList = React.lazy(() => import("./pages/wishlist"));
+const Contact = React.lazy(() => import("./pages/registration"));
+const NotFound = React.lazy(() => import("./pages/notFound"));
 
 function App() {
-  const [searchQuery, setSearchQuery] = useState("");
-
-  const handleSearch = (query) => {
-    setSearchQuery(query);
-  };
+  const [lang, setLang] = useState("en");
 
   return (
     <BrowserRouter>
-      <Navbar onSearch={handleSearch} />
-      <Routes>
-        <Route path="/" element={<Movies searchQuery={searchQuery} />} />
-        <Route path="/movies/:id" element={<MovieDetails />} />
-        <Route path="/wishlist" element={<Wishlist />} />
-        <Route path="/registration" element={<RegisterForm />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      {/* Language Context Provider */}
+      <LanguageContext.Provider value={{ lang, setLang }}>
+        {/* Container for RTL/LTR support */}
+        <Container
+          dir={lang === "ar" ? "rtl" : "ltr"}
+          className={lang === "ar" ? "text-right" : "text-left"}
+          style={{padding:"0"}} 
+          fluid
+        >
+          {/* Header Component */}
+          <Navbar />
+
+          {/* Suspense for lazy-loaded components */}
+          <Suspense fallback={<div>Loading...</div>}>
+            <Routes>
+              {/* Routes for all pages */}
+              <Route path="/" element={<Movies />} />
+              <Route path="/movies/:id" element={<MovieDetails />} />
+              <Route path="/wishlist" element={<WatchList />} />
+              <Route path="/registration" element={<Contact />} />
+              <Route path="/*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
+        </Container>
+      </LanguageContext.Provider>
     </BrowserRouter>
   );
 }
