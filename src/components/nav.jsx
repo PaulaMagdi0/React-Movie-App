@@ -43,6 +43,9 @@ const Navbar = ({ onSearch }) => {
                             <Link to="/wishlist" className="navbar-toggler">
                                 <i className="fas fa-heart"></i>
                             </Link>
+                            <Link to="/registration" className="navbar-toggler">
+                                <i className="fas fa-user"></i>
+                            </Link>
                         </div>
                     </div>
                     <div

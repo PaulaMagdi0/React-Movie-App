@@ -15,7 +15,7 @@ const Movies = ({ searchQuery }) => {
   const fetchData = async (page = 1) => {
     try {
       const response = await axios.get(
-        `https://api.themoviedb.org/3/movie/popular?api_key={URKEY}&page=${page}`
+        `https://api.themoviedb.org/3/movie/popular?api_key={API}&page=${page}`
       );
       setMovies(response.data.results);
       setFilteredMovies(response.data.results);
